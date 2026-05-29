@@ -1,27 +1,40 @@
 # SkillForge Enterprise Platform
 
-A production-ready enterprise learning and skills management platform with a React + Vite frontend and Spring Boot backend.
+A complete enterprise-grade platform for skills management, learning roadmaps, assessments, and recommendations.
 
-## What’s included
+## Overview
 
+`SkillForge` is built as a full-stack application with:
+- Spring Boot backend and PostgreSQL persistence
+- React + Vite frontend with Tailwind CSS
 - JWT authentication and role-based access control
-- Skills management, dashboard analytics, recommendations, and user profile pages
-- PostgreSQL persistence with Flyway database migrations
-- Docker Compose for local development and service orchestration
-- Tailwind CSS frontend styling with React Router, React Query, and Axios
-- CI pipeline for backend and frontend builds
+- Docker Compose orchestration for local development
+
+## Features
+
+- Secure user registration and login
+- Role-based access for users and admins
+- Skills management, dashboard analytics, and personalized suggestions
+- Profile management and progress tracking
+- PostgreSQL database with Flyway schema migrations
+- CI pipeline for backend and frontend build validation
 
 ## Quick Start
 
-1. Copy environment examples:
+1. Copy environment files:
    - `backend/.env.example` -> `backend/.env`
    - `frontend/.env.example` -> `frontend/.env.local`
-   - `./.env.example` -> `./.env` if you want root Docker environment variables
-2. Build and start the stack:
-   - `docker-compose up --build`
-3. Open in browser:
+   - `./.env.example` -> `./.env` (optional root Docker env)
+
+2. Start the application stack:
+
+```powershell
+docker-compose up --build
+```
+
+3. Open the apps:
    - Frontend: `http://localhost:4173`
-   - Backend: `http://localhost:8080`
+   - Backend API: `http://localhost:8080`
 
 ## Local Development
 
@@ -41,22 +54,23 @@ npm install
 npm run dev
 ```
 
-## Project Structure
+## Repository Structure
 
-- `backend/` — Spring Boot application, security, services, controllers, repositories, DTOs, exceptions
-- `frontend/` — React app, pages, components, services, API clients, routing, and tests
+- `backend/` — Spring Boot app with controllers, services, repositories, security, and migrations
+- `frontend/` — React UI with pages, routing, API clients, and Tailwind styles
 - `docker-compose.yml` — local orchestration for backend, frontend, and PostgreSQL
-- `README.md` — project overview and quickstart guide
+- `README.md` — project overview and setup instructions
 
 ## Notes
 
-- Backend runs on `http://localhost:8080`
-- Frontend runs on `http://localhost:4173`
-- PostgreSQL credentials are configured via environment variables and Flyway initializes the schema on startup
+- Backend runs at `http://localhost:8080`
+- Frontend runs at `http://localhost:4173`
+- PostgreSQL credentials are set via `backend/.env`
+- Flyway applies database migrations automatically on startup
 
 ## Recommended Workflow
 
-1. Prepare `.env` files
-2. Start Docker services
-3. Use backend API via Postman or frontend UI
-4. Extend features in `backend/src/main/java` and `frontend/src`
+1. Create environment config files
+2. Launch Docker Compose or start services separately
+3. Use the frontend UI or backend API endpoints
+4. Extend backend routes and frontend pages as needed
