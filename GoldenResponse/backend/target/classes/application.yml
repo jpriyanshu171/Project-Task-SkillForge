@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/skillforge}
+    username: ${SPRING_DATASOURCE_USERNAME:skillforge_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:password}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    show-sql: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+server:
+  port: 8080
+jwt:
+  secret: ${JWT_SECRET:skillforge-secret-key}
+  access-token-validity: 900000
+  refresh-token-validity: 2592000000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics

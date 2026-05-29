@@ -1,0 +1,36 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: skillforge
+      POSTGRES_USER: skillforge_user
+      POSTGRES_PASSWORD: strongpassword
+    ports:
+      - '5432:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/skillforge
+      SPRING_DATASOURCE_USERNAME: skillforge_user
+      SPRING_DATASOURCE_PASSWORD: strongpassword
+      JWT_SECRET: super-secret-key-change-me
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - '4173:80'
+    depends_on:
+      - backend
+
+volumes:
+  db_data:
