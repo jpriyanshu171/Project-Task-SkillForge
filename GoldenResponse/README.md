@@ -1,46 +1,62 @@
 # SkillForge Enterprise Platform
 
-This repository contains a production-grade enterprise learning ecosystem with a React + Vite frontend and Spring Boot backend.
+A production-ready enterprise learning and skills management platform with a React + Vite frontend and Spring Boot backend.
 
-## Features
+## What’s included
 
-- JWT authentication with role-based access
-- Skills management, dashboard analytics, recommendations, and user profile
-- PostgreSQL persistence with Flyway migrations
-- Docker Compose deployment
-- Backend security, validation, and structured API responses
-- Frontend responsive UI built with Tailwind CSS
-- CI workflow for backend and frontend builds
+- JWT authentication and role-based access control
+- Skills management, dashboard analytics, recommendations, and user profile pages
+- PostgreSQL persistence with Flyway database migrations
+- Docker Compose for local development and service orchestration
+- Tailwind CSS frontend styling with React Router, React Query, and Axios
+- CI pipeline for backend and frontend builds
 
-## Setup
+## Quick Start
 
-1. Copy environment files:
+1. Copy environment examples:
    - `backend/.env.example` -> `backend/.env`
    - `frontend/.env.example` -> `frontend/.env.local`
-2. Start services:
+   - `./.env.example` -> `./.env` if you want root Docker environment variables
+2. Build and start the stack:
    - `docker-compose up --build`
-3. Access:
+3. Open in browser:
    - Frontend: `http://localhost:4173`
    - Backend: `http://localhost:8080`
 
-## Backend
+## Local Development
 
-- Spring Boot 3
-- Java 21
-- PostgreSQL
-- Flyway migrations
-- JWT auth
+### Backend
 
-## Frontend
+```powershell
+cd backend
+mvn clean package
+mvn spring-boot:run
+```
 
-- React 18
-- Vite
-- Tailwind CSS
-- React Query
-- Axios
-- React Router
+### Frontend
 
-## Development
+```powershell
+cd frontend
+npm install
+npm run dev
+```
 
-- Backend: `cd backend && mvn spring-boot:run`
-- Frontend: `cd frontend && npm install && npm run dev`
+## Project Structure
+
+- `backend/` — Spring Boot application, security, services, controllers, repositories, DTOs, exceptions
+- `frontend/` — React app, pages, components, services, API clients, routing, and tests
+- `docker-compose.yml` — local orchestration for backend, frontend, and PostgreSQL
+- `README.md` — project overview and quickstart guide
+
+## Notes
+
+- Backend runs on `http://localhost:8080`
+- Frontend runs on `http://localhost:4173`
+- PostgreSQL credentials are configured via environment variables and Flyway initializes the schema on startup
+
+## Recommended Workflow
+
+1. Prepare `.env` files
+2. Start Docker services
+3. Use backend API via Postman or frontend UI
+4. Extend features in `backend/src/main/java` and `frontend/src`
